@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import { useState } from "react";
+import logo from "./logo.svg";
+import "./style.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+
+let [text, setText] = useState("");
+let [yodaText, setYodaText] = useState("");
+
+  const onTranslateClick = () => {
+    // console.log("translate" + text)
+    axios.post("/translate/yoda.json", { text })
+    .then(res => {
+      const { translated} = res.data.contents;
+      setYodaText(translated)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+	return (
+		<div className="app">
+			<h1>Star Wars Yoda Translator</h1>
+			<label>English</label>
+			<br />
+			<input
+				className="textInput"
+				type="text"
+        value={text}
+        onChange={e =>setText(e.target.value)}
+				placeholder="Type your text here"
+			/>
+			<button className="btn" onClick={onTranslateClick}>Translate</button>
+			<br />
+			<label>Yoda</label>
+			<div className="yoda--translation">
+				<p className="yoda--translation__text">{yodaText}</p>
+			</div>
+		</div>
+	);
 }
-
-export default App;

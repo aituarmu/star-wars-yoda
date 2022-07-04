@@ -1,0 +1,31 @@
+.app {
+  margin: 10px;
+}
+
+label {
+    color: gray;
+    margin: 0 0 3px;
+}
+
+ .textInput {
+    padding: 10px;
+    width: 500px;
+    margin: 5px;
+    font-size: 21px;
+
+ }
+
+ .btn {
+  background-color: #415234;
+  border-color:  #415234;
+  color: #fff;
+  border: 1px solid transparent;
+  padding: 10px 30px;
+  font-size: 22px
+ }
+
+ .yoda--translation__text {
+  color: green;
+  font-size: 32px;
+  margin: 0 0 0 5px;
+ }
